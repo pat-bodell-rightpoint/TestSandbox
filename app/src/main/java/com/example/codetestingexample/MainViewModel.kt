@@ -1,18 +1,19 @@
 package com.example.codetestingexample
 
+import android.text.Editable
+import androidx.core.text.isDigitsOnly
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.ObservableInt
 
 class MainViewModel(private val mathUtil: MathUtil) : BaseObservable() {
-    @Bindable
+
     var inputOne = 0
-    @Bindable
     var inputTwo = 0
-    @Bindable
-    var output = 0
+    var output = ObservableInt(0)
 
     fun add() {
-        output = mathUtil.add(inputOne, inputTwo)
+        output.set(mathUtil.add(inputOne, inputTwo))
     }
 
     fun subtract() {}
@@ -22,4 +23,20 @@ class MainViewModel(private val mathUtil: MathUtil) : BaseObservable() {
     fun divide() {}
 
     fun factorial() {}
+
+    @Bindable
+    fun setInputOne(text: Editable) {
+        val value = text.toString()
+        inputOne = if (value.isDigitsOnly() && !value.isBlank()) {
+            Integer.valueOf(value)
+        } else 0
+    }
+
+    @Bindable
+    fun setInputTwo(text: Editable) {
+        val value = text.toString()
+        inputTwo = if (value.isDigitsOnly() && !value.isBlank()) {
+            Integer.valueOf(value)
+        } else 0
+    }
 }

@@ -17,7 +17,8 @@
                 android:id="@+id/first_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.inputOne}"
+                android:text="@{`` + viewModel.inputOne}"
+                android:afterTextChanged="@{(view) -> viewModel.setInputOne(view)}"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintTop_toTopOf="parent"
@@ -29,7 +30,8 @@
                 android:id="@+id/second_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.inputTwo}"
+                android:text="@{`` + viewModel.inputTwo}"
+                android:afterTextChanged="@{(view) -> viewModel.setInputTwo(view)}"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintTop_toBottomOf="@id/first_input"
@@ -47,12 +49,12 @@
                 app:layout_constraintTop_toBottomOf="@id/second_input"
                 app:layout_constraintBottom_toTopOf="@+id/addition_button"/>
 
-        <EditText
+        <TextView
                 android:id="@+id/solution_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="none"
-                android:text="@{viewModel.output}"
+                android:text="@{`` + viewModel.output}"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintTop_toBottomOf="@id/second_input"
                 app:layout_constraintBottom_toTopOf="@+id/addition_button"
